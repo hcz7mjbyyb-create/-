@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Письмо</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: #2b1d14;
+    color: #3b2a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Конверт */
+.envelope {
+    width: 300px;
+    height: 200px;
+    background: #d2b48c;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.seal {
+    width: 60px;
+    height: 60px;
+    background: #8b0000;
+    border-radius: 50%;
+    position: absolute;
+    top: 70px;
+    left: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+}
+
+/* Письмо */
+.letter {
+    display: none;
+    background: #f5e6c8;
+    padding: 20px;
+    width: 320px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+}
+
+#yes {
+    background: #8b0000;
+    color: white;
+}
+
+#no {
+    background: #ccc;
+    color: #666;
+    position: absolute;
+}
+
+/* Финал */
+.final {
+    display: none;
+    background: #f5e6c8;
+    padding: 20px;
+    width: 320px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="envelope" onclick="openLetter()">
+    <div class="seal">♥</div>
+</div>
+
+<div class="letter" id="letter">
+    <h2>Сходишь со мной на свидание?</h2>
+    <button id="yes" onclick="showFinal()">Да</button>
+    <button id="no" onmouseover="moveNo()">Нет</button>
+</div>
+
+<div class="final" id="final">
+    ❤️ Люблю тебя ❤️ <br><br>
+    Будь готова <br>
+    <b>10.10.26 в 18:00</b>
+</div>
+
+<script>
+function openLetter() {
+    document.querySelector('.envelope').style.display = 'none';
+    document.getElementById('letter').style.display = 'block';
+    moveNo();
+}
+
+function showFinal() {
+    document.getElementById('letter').style.display = 'none';
+    document.getElementById('final').style.display = 'block';
+}
+
+function moveNo() {
+    const noBtn = document.getElementById('no');
+    const parent = document.getElementById('letter');
+
+    const maxX = parent.clientWidth - noBtn.offsetWidth;
+    const maxY = parent.clientHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+}
+</script>
+
+</body>
+</html>
